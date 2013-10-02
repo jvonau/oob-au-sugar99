@@ -251,3 +251,8 @@ ln -s /dev/null /etc/systemd/system/systemd-update-utmp-shutdown.service
 # system. as this is a useful network diagnosis tool, and used by ds-backup,
 # make it available to non-root users again (#12427)
 chmod u+s /usr/bin/ping
+
+# Disable "requiretty" for "wheel" group, so that "sudo" commands are able 
+# to run in a terminal-less environment. re ds-backup
+echo "Defaults:%wheel !requiretty" >> /etc/sudoers
+

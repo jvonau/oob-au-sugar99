@@ -10,10 +10,11 @@ platform=$(read_config global target_platform)
 official=$(read_config global official)
 custinfo=$(read_config global customization_info)
 buildnr=$(read_buildnr)
+image_name=$(read_config global image_name)
 
 [ -z "$custinfo" ] && custinfo="customized"
 #add leading space
-custinfo=" $custinfo"
+#custinfo=" $custinfo"
 
 custstr=
 if [[ "$official" != "1" ]]; then
@@ -21,16 +22,19 @@ if [[ "$official" != "1" ]]; then
 	custbstr="$custinfo"
 fi
 
-buildstr="$majver.$minver.$relver for ${platform}${custstr} (build $buildnr)"
+#buildstr="$majver.$minver.$relver for ${platform}${custstr} (build $buildnr)"
+buildstr="${custbstr} for ${platform} (build $buildnr)"
 
 cat <<EOF
 # needed for spin debranding
-echo "OLPC release $majver (based on Fedora $fver)" > /etc/fedora-release
+echo "${buildstr} (based on Fedora $fver)" > /etc/fedora-release
+#echo "OLPC release $majver (based on Fedora $fver)" > /etc/fedora-release
 
 # this is used by the activity updater
 echo "$majver.$minver.$relver" > /etc/olpc-release
 
-sed -i -e "1s/.*/OLPC OS $buildstr/" /etc/issue
+sed -i -e "1s/.*/$buildstr/" /etc/issue
+#sed -i -e "1s/.*/OLPC OS $buildstr/" /etc/issue
 cp /etc/issue /etc/issue.net
 
 echo "${buildstr}" > /boot/olpc_build

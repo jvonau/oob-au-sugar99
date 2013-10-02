@@ -12,6 +12,12 @@ sugar-cp-modemconfiguration
 sugar-cp-network
 sugar-cp-power
 
+## testing
+gwebsockets
+sugar-cp-background
+sugar-cp-webaccount
+sugar-cp-webservices
+
 # additional sugar packages
 libxml2-python
 webkitgtk3
@@ -31,7 +37,7 @@ python-cjson
 libabiword
 
 # Browse
-gnash-plugin
+-gnash-plugin
 totem-mozplugin
 
 # Terminal
@@ -52,7 +58,8 @@ pybox2d
 gstreamer-plugins-espeak
 
 # using a non-upstream updater temporarily (#10641)
-sugar-update-control
+# sugar-update-control
+sugar-cp-updater
 
 # explicitly specify dependencies on GNOME's implementation of certain
 # components, otherwise the KDE ones will be brought in by default
@@ -61,3 +68,9 @@ notification-daemon
 
 # standard part of of PyGTK, used by some activities (#11053)
 pygtk2-libglade
+
+python-ipython-console
+tuxmath
+tuxpaint
+sugar-client
+opendyslexic-fonts

@@ -2,11 +2,17 @@
 # Licensed under the terms of the GNU GPL v2 or later; see COPYING for details.
 
 . $OOB__shlib
+
+image_number=$(image_name)
+platform=$(read_config global target_platform)
+
 umount $fsmount &>/dev/null || :
 umount $intermediatesdir/mnt-root &>/dev/null || :
 umount $intermediatesdir/mnt-boot &>/dev/null || :
 umount $intermediatesdir/mnt-squashfs &>/dev/null || :
 umount $intermediatesdir/mnt-iso &>/dev/null || :
+cp $intermediatesdir/build.ks $outputdir/
+mv $outputdir $outputdir.$image_number-$platform
 
 # Sometimes, when image-creator is interrupted, it leaves mounts around.
 # clean them up here
